@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -flto -shared  -o simple_linear_regression.cpython-312-x86_64-linux-gnu.so CMakeFiles/simple_linear_regression.dir/bindings.cpp.o 

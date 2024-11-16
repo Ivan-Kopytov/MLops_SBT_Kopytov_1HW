@@ -1,0 +1,3 @@
+/home/ivan-kopytov/d/ML_SBT/1HW/build/CMakeFiles/simple_linear_regression.dir
+/home/ivan-kopytov/d/ML_SBT/1HW/build/CMakeFiles/edit_cache.dir
+/home/ivan-kopytov/d/ML_SBT/1HW/build/CMakeFiles/rebuild_cache.dir
