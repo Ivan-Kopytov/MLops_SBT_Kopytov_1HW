@@ -1,6 +1,7 @@
 import hydra
 from omegaconf import DictConfig
 import pytorch_lightning as pl
+from pytorch_lightning.callbacks import ModelCheckpoint
 
 from data_module import RegressionDataModule
 from model_module import SimpleRegressionModel
@@ -17,7 +18,8 @@ def main(cfg: DictConfig):
     lr = cfg.model.learning_rate
 
     max_epochs = cfg.train.max_epochs
-    gpus = cfg.train.gpus
+    accelerator = cfg.train.accelerator
+    devices = cfg.train.devices
 
     # Инициализируем DataModule и Model из параметров
     dm = RegressionDataModule(
@@ -30,16 +32,23 @@ def main(cfg: DictConfig):
 
     model = SimpleRegressionModel(lr=lr)
 
-    # # Инициализируем тренер
-    # trainer = pl.Trainer(
-    #     max_epochs=max_epochs,
-    #     gpus=gpus  # Если используете lightning < 2.0, параметр gpus актуален, если Lightning >= 2.0, тогда используйте accelerator='gpu', devices=1
-    # )
-    trainer = pl.Trainer(
-    max_epochs=max_epochs,
-    accelerator="cpu",
-    devices=1
+    # Настраиваем колбэк для сохранения чекпоинтов из конфигурации
+    checkpoint_callback = ModelCheckpoint(
+        monitor=cfg.train.checkpoint.monitor,
+        dirpath=cfg.train.checkpoint.dirpath,
+        filename=cfg.train.checkpoint.filename,
+        save_top_k=cfg.train.checkpoint.save_top_k,
+        mode=cfg.train.checkpoint.mode,
     )
+
+    # Инициализируем тренер с колбэком
+    trainer = pl.Trainer(
+        max_epochs=max_epochs,
+        accelerator=accelerator,
+        devices=devices,
+        callbacks=[checkpoint_callback]
+    )
+
     # Запускаем обучение
     trainer.fit(model, dm)
 
