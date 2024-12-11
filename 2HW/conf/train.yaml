@@ -1,0 +1,3 @@
+train:
+  max_epochs: 10
+  gpus: 0
