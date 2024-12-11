@@ -34,10 +34,112 @@
 
 ## Структура проекта
 
-SBT/ ├── .git/ ├── .dvc/ ├── .gitignore ├── conf/ │ ├── config.yaml │ ├── data.yaml │ ├── model.yaml │ └── train.yaml ├── 1HW/ │ ├── CMakeLists.txt │ ├── Dockerfile │ ├── README.md │ ├── bindings.cpp │ ├── build/ │ ├── dist/ │ ├── dist.dvc │ ├── linear_regression.cpp │ ├── pyproject.toml │ ├── setup.py │ ├── simple_linear_regression.cpython-312-x86_64-linux-gnu.so │ ├── simple_linear_regression.egg-info/ │ └── test_script.py ├── 2HW/ │ ├── checkpoints/ │ ├── checkpoints.dvc │ ├── conf/ │ │ ├── config.yaml │ │ ├── data.yaml │ │ ├── model.yaml │ │ └── train.yaml │ ├── data_module.py │ ├── dataset.py │ ├── model_module.py │ ├── outputs/ │ ├── simple_linear_regression.cpython-312-x86_64-linux-gnu.so │ └── train.py └── remote_storage/ └── files/ └── md5/ └── d7/ └── 51713988987e9331980363e24189ce.dir
-
-diff
-Копировать код
+.
+├── 1HW
+│   ├── CMakeLists.txt
+│   ├── Dockerfile
+│   ├── README.md
+│   ├── bindings.cpp
+│   ├── build
+│   │   ├── CMakeCache.txt
+│   │   ├── CMakeFiles
+│   │   │   ├── 3.28.3
+│   │   │   │   ├── CMakeCXXCompiler.cmake
+│   │   │   │   ├── CMakeDetermineCompilerABI_CXX.bin
+│   │   │   │   ├── CMakeSystem.cmake
+│   │   │   │   └── CompilerIdCXX
+│   │   │   │       ├── CMakeCXXCompilerId.cpp
+│   │   │   │       ├── a.out
+│   │   │   │       └── tmp
+│   │   │   ├── CMakeConfigureLog.yaml
+│   │   │   ├── CMakeDirectoryInformation.cmake
+│   │   │   ├── CMakeScratch
+│   │   │   ├── Makefile.cmake
+│   │   │   ├── Makefile2
+│   │   │   ├── TargetDirectories.txt
+│   │   │   ├── cmake.check_cache
+│   │   │   ├── pkgRedirects
+│   │   │   ├── progress.marks
+│   │   │   └── simple_linear_regression.dir
+│   │   │       ├── DependInfo.cmake
+│   │   │       ├── bindings.cpp.o
+│   │   │       ├── bindings.cpp.o.d
+│   │   │       ├── build.make
+│   │   │       ├── cmake_clean.cmake
+│   │   │       ├── compiler_depend.make
+│   │   │       ├── compiler_depend.ts
+│   │   │       ├── depend.make
+│   │   │       ├── flags.make
+│   │   │       ├── link.txt
+│   │   │       └── progress.make
+│   │   ├── Makefile
+│   │   ├── cmake_install.cmake
+│   │   └── simple_linear_regression.cpython-312-x86_64-linux-gnu.so
+│   ├── dist
+│   │   └── simple_linear_regression-0.1.0.tar.gz
+│   ├── linear_regression.cpp
+│   ├── pyproject.toml
+│   ├── setup.py
+│   ├── simple_linear_regression.cpython-312-x86_64-linux-gnu.so
+│   ├── simple_linear_regression.egg-info
+│   │   ├── PKG-INFO
+│   │   ├── SOURCES.txt
+│   │   ├── dependency_links.txt
+│   │   └── top_level.txt
+│   └── test_script.py
+├── 2HW
+│   ├── README.md
+│   ├── __pycache__
+│   │   ├── data_module.cpython-312.pyc
+│   │   ├── dataset.cpython-312.pyc
+│   │   └── model_module.cpython-312.pyc
+│   ├── checkpoints
+│   ├── checkpoints.dvc
+│   ├── conf
+│   │   ├── config.yaml
+│   │   ├── data.yaml
+│   │   ├── model.yaml
+│   │   └── train.yaml
+│   ├── data_module.py
+│   ├── dataset.py
+│   ├── model_module.py
+│   ├── outputs
+│   │   └── 2024-12-11
+│   │       ├── 17-42-46
+│   │       │   └── train.log
+│   │       ├── 17-44-39
+│   │       │   └── train.log
+│   │       ├── 17-47-46
+│   │       │   ├── lightning_logs
+│   │       │   │   └── version_0
+│   │       │   │       ├── checkpoints
+│   │       │   │       │   └── epoch=9-step=30.ckpt
+│   │       │   │       ├── hparams.yaml
+│   │       │   │       └── metrics.csv
+│   │       │   └── train.log
+│   │       ├── 18-13-00
+│   │       │   ├── checkpoints
+│   │       │   │   └── model-epoch=09-val_loss=117.25.ckpt
+│   │       │   ├── lightning_logs
+│   │       │   │   └── version_0
+│   │       │   │       ├── hparams.yaml
+│   │       │   │       └── metrics.csv
+│   │       │   └── train.log
+│   │       └── 18-16-49
+│   │           ├── checkpoints
+│   │           │   └── model-epoch=09-val_loss=8.04.ckpt
+│   │           ├── lightning_logs
+│   │           │   └── version_0
+│   │           │       ├── hparams.yaml
+│   │           │       └── metrics.csv
+│   │           └── train.log
+│   ├── simple_linear_regression.cpython-312-x86_64-linux-gnu.so
+│   └── train.py
+└── remote_storage
+    └── files
+        └── md5
+            └── d7
+                └── 51713988987e9331980363e24189ce.dir
 
 - **1HW/**: Содержит файлы, связанные с C++ расширением и его Python биндингами.
 - **2HW/**: Содержит тренировочный пайплайн с использованием PyTorch Lightning, Hydra и DVC.
@@ -60,29 +162,25 @@ diff
 
 Если проект хранится в удалённом репозитории, клонируйте его:
 
-```bash
 git clone <URL_репозитория>
 cd SBT
+
 Создание и активация виртуального окружения
 Создайте и активируйте виртуальное окружение для изоляции зависимостей:
 
-bash
-Копировать код
 python3 -m venv venv
 source venv/bin/activate
 Установка зависимостей
 Установите необходимые Python зависимости для проекта:
 
-bash
-Копировать код
+
 pip install --upgrade pip
 pip install pybind11 pytorch-lightning hydra-core dvc
 1HW: Создание и использование C++ расширения
 Сборка C++ расширения
 Перейдите в директорию 1HW:
 
-bash
-Копировать код
+
 cd 1HW
 Сборка расширения с помощью CMake и Make:
 
@@ -101,8 +199,6 @@ cd 1HW
 Настройка Hydra
 Создайте директорию конфигураций:
 
-bash
-Копировать код
 mkdir -p 2HW/conf
 Создайте основные конфигурационные файлы:
 
@@ -201,20 +297,15 @@ mkdir -p 2HW/conf
 
 Решение: Инициализируйте Git репозиторий перед инициализацией DVC:
 
-bash
-Копировать код
-git init
-dvc init
 Дополнительная информация
 Hydra: Управление конфигурациями. Документация Hydra
 PyTorch Lightning: Упрощённый интерфейс для обучения моделей. Документация PyTorch Lightning
 DVC: Контроль версий данных и моделей. Документация DVC
 pybind11: Создание Python биндингов для C++. Документация pybind11
 Git: Система контроля версий. Документация Git
-Автор: Ваше Имя
-Контакт: your.email@example.com
+Автор: Копытов Иван 
+Контакт: ivankopytov37@gmail.com
 
-Копировать код
 
 
 
